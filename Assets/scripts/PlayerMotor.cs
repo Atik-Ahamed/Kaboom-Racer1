@@ -28,7 +28,7 @@ public class PlayerMotor : MonoBehaviour
 
     void Update()
     {
-        leftright = Input.acceleration.x;
+        leftright = Input.acceleration.x!=0?Input.acceleration.x : Input.GetAxis("Horizontal");
 
         // leftright = Input.GetAxis("Horizontal");
        // forwardback = Input.GetAxis("Vertical");
