@@ -6,9 +6,9 @@ public class TileManager : MonoBehaviour
 {
 
     public GameObject[] tilePrefabs;
-    private float spawnZ =1200f;
+    private float spawnZ =336f;
     public Transform playerTransform;
-    private float tileLenght = 300.0f;
+    private float tileLenght = 100.0f;
     private int amountTilesOnScreen = 4;
     public List<GameObject> activeTiles;
    
@@ -23,7 +23,7 @@ public class TileManager : MonoBehaviour
 
     void Update()
     {
-        if (spawnZ - playerTransform.position.z < 50.0f)
+        if (spawnZ - playerTransform.position.z < 100.0f)
         {
             moveTile();
             //spawnTile();
