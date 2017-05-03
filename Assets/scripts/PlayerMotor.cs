@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using System.Collections;
 
 public class PlayerMotor : MonoBehaviour
 {
-
+    
     public float maxTime = 0.5f;
     public float minSwipeDist = 50f;
     private float turningSpeed = 90f;
@@ -13,7 +16,9 @@ public class PlayerMotor : MonoBehaviour
     float swipeTime;
     Vector3 startPose;
     Vector3 endPose;
-    private float speed = 100f;
+    private float speed = 80f;   /// <summary>
+    /// ////this is the moving speed
+    /// </summary>
     private float jumpForce=100f;
     private float leftright;
     private float forwardback; //up down
@@ -21,13 +26,20 @@ public class PlayerMotor : MonoBehaviour
     //public GameObject front;
     //public GameObject frontToRotatePoint;
     Rigidbody rb;
+
+
+   
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        
+      
         leftright = Input.acceleration.x!=0?Input.acceleration.x : Input.GetAxis("Horizontal");
 
         // leftright = Input.GetAxis("Horizontal");
@@ -40,7 +52,7 @@ public class PlayerMotor : MonoBehaviour
         }
 
         this.transform.Rotate(Vector3.up, leftright*Time.deltaTime*turningSpeed);
-
+        //mainCycle.transform.Rotate(mainCycle. transform.forward, turningSpeed *Time.deltaTime* leftright);
         //front.transform.Rotate(-frontToRotatePoint.transform.up, 2 * leftright);
 
         if (Input.touchCount > 0)
@@ -75,6 +87,19 @@ public class PlayerMotor : MonoBehaviour
         {
             rb.AddForce(-transform.forward * speed * 3 * Time.deltaTime);
         }
+
+    }
+    public void turnLeft()
+    {
+        this.transform.Rotate(Vector3.up, -1* Time.deltaTime * turningSpeed);
+      
+
+
+    }
+    public void turnRight()
+    {
+
+        this.transform.Rotate(Vector3.up, Time.deltaTime * turningSpeed);
 
     }
 }

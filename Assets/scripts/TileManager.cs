@@ -6,7 +6,7 @@ public class TileManager : MonoBehaviour
 {
 
     public GameObject[] tilePrefabs;
-    private float spawnZ =336f;
+    private float spawnZ =312f;
     public Transform playerTransform;
     private float tileLenght = 100.0f;
     private int amountTilesOnScreen = 4;
@@ -49,11 +49,21 @@ public class TileManager : MonoBehaviour
     }
     public void moveTile()
     {
-
-        int rand = Random.Range(0, 3);
-        tilePrefabs[rand].transform.position=(new Vector3(0, 0, spawnZ));
-        tilePrefabs[rand].transform.SetParent(transform);
-        spawnZ += tileLenght;
-
+        int rand = 2;
+        int previous = rand;
+        
+         rand = Random.Range(0, 3);
+         if (rand==previous)
+        {
+            moveTile();
+        } else
+        {
+            previous = rand;
+            tilePrefabs[rand].transform.position = (new Vector3(0, 0, spawnZ));
+            tilePrefabs[rand].transform.SetParent(transform);
+            spawnZ += tileLenght;
+        }
+        
     }
+   
 }
