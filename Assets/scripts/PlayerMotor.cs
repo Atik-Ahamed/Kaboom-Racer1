@@ -6,23 +6,25 @@ using System.Collections;
 
 public class PlayerMotor : MonoBehaviour
 {
-    
+    public WheelCollider front1;
+    public WheelCollider front2;
+    public WheelCollider back;
     public float maxTime = 0.5f;
     public float minSwipeDist = 50f;
-    private float turningSpeed = 90f;
+    private float turningSpeed = 10f;
     float startTime;
     float endTime;
     float swipeDistance;
     float swipeTime;
     Vector3 startPose;
     Vector3 endPose;
-    private float speed = 80f;   /// <summary>
+    private float speed = 250f;   /// <summary>
     /// ////this is the moving speed
     /// </summary>
     private float jumpForce=100f;
     private float leftright;
     private float forwardback; //up down
-    public GameObject mainCycle;
+    //public GameObject mainCycle;
     //public GameObject front;
     //public GameObject frontToRotatePoint;
     Rigidbody rb;
@@ -41,17 +43,20 @@ public class PlayerMotor : MonoBehaviour
         
       
         leftright = Input.acceleration.x!=0?Input.acceleration.x : Input.GetAxis("Horizontal");
+        front1.motorTorque = speed ;
+        front2.motorTorque = speed;
+        front1.steerAngle = turningSpeed *leftright;
+        front2.steerAngle = turningSpeed * leftright;
+        //rb.AddForce(transform.forward * speed * 3 * Time.deltaTime);
 
-        // leftright = Input.GetAxis("Horizontal");
-       // forwardback = Input.GetAxis("Vertical");
 
-        rb.AddForce(transform.forward * speed * 3 * Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(transform.up * speed);
         }
 
-        this.transform.Rotate(Vector3.up, leftright*Time.deltaTime*turningSpeed);
+       // this.transform.Rotate(Vector3.up, leftright*Time.deltaTime*turningSpeed);
         //mainCycle.transform.Rotate(mainCycle. transform.forward, turningSpeed *Time.deltaTime* leftright);
         //front.transform.Rotate(-frontToRotatePoint.transform.up, 2 * leftright);
 
@@ -91,15 +96,19 @@ public class PlayerMotor : MonoBehaviour
     }
     public void turnLeft()
     {
-        this.transform.Rotate(Vector3.up, -1* Time.deltaTime * turningSpeed);
-      
+        //this.transform.Rotate(Vector3.up, -1* Time.deltaTime * turningSpeed);
+        front1.motorTorque = -1 * Time.deltaTime * turningSpeed;
+        front2.motorTorque = -1 * Time.deltaTime * turningSpeed;
+
 
 
     }
     public void turnRight()
     {
 
-        this.transform.Rotate(Vector3.up, Time.deltaTime * turningSpeed);
+        //this.transform.Rotate(Vector3.up, Time.deltaTime * turningSpeed);
+        front1.motorTorque = 1* Time.deltaTime * turningSpeed;
+        front2.motorTorque = 1 * Time.deltaTime * turningSpeed;
 
     }
 }
