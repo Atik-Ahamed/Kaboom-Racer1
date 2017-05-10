@@ -37,7 +37,17 @@ public class BtnRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
 
             player.GetComponent<PlayerMotor>().turnRight();
+            if (player.GetComponent<PlayerMotor>().getButtonRotaion() <= 1)
+            {
+                player.GetComponent<PlayerMotor>().setBUttonRotation(.09f);
+            }
 
+        }
+        else
+        {
+
+            if (player.GetComponent<PlayerMotor>().getButtonRotaion() >= 0)
+                player.GetComponent<PlayerMotor>().setBUttonRotation(-.09f);
         }
     }
 

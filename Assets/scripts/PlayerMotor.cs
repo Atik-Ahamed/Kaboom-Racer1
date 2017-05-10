@@ -6,32 +6,38 @@ using System.Collections;
 
 public class PlayerMotor : MonoBehaviour
 {
-    public WheelCollider front1;
-    public WheelCollider front2;
-    public WheelCollider back;
+    //public WheelCollider front1;
+    // public WheelCollider front2;
+    private float buttonRotation;
+    private WheelCollider back;
     public float maxTime = 0.5f;
     public float minSwipeDist = 50f;
-    private float turningSpeed = 10f;
+    private float turningSpeed = 70f;
     float startTime;
     float endTime;
     float swipeDistance;
     float swipeTime;
     Vector3 startPose;
     Vector3 endPose;
-    private float speed = 250f;   /// <summary>
-    /// ////this is the moving speed
-    /// </summary>
-    private float jumpForce=100f;
+    private float speed = 100f;   /// <summary>
+                                  /// ////this is the moving speed
+                                  /// </summary>
+    private float jumpForce = 100f;
     private float leftright;
     private float forwardback; //up down
-    //public GameObject mainCycle;
+    public GameObject mainCycle;
     //public GameObject front;
     //public GameObject frontToRotatePoint;
     Rigidbody rb;
 
 
-   
-
+    float yAsixRotation;
+    public void setBUttonRotation(float value)
+    {
+        buttonRotation += value;
+    }
+    public float getButtonRotaion()
+    { return buttonRotation; }
 
     void Start()
     {
@@ -40,15 +46,23 @@ public class PlayerMotor : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-      
-        leftright = Input.acceleration.x!=0?Input.acceleration.x : Input.GetAxis("Horizontal");
-        front1.motorTorque = speed ;
-        front2.motorTorque = speed;
-        front1.steerAngle = turningSpeed *leftright;
-        front2.steerAngle = turningSpeed * leftright;
-        //rb.AddForce(transform.forward * speed * 3 * Time.deltaTime);
+        Debug.Log("Button rotaion" + buttonRotation);
 
+        //Debug.Log(front1.steerAngle);
+       // leftright = Input.acceleration.x != 0 ? Input.acceleration.x : Input.GetAxis("Horizontal");
+        //front1.motorTorque = speed;
+        // front2.motorTorque = speed;
+        //front1.steerAngle = turningSpeed * leftright;
+        // front2.steerAngle = turningSpeed * leftright;
+
+        yAsixRotation = transform.rotation.y;
+
+        rb.AddForce(transform.forward * speed * Time.deltaTime);
+
+        transform.Rotate(transform.up, turningSpeed * Time.deltaTime * leftright);
+        Debug.Log(yAsixRotation);
+
+        mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * leftright);
 
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -56,7 +70,7 @@ public class PlayerMotor : MonoBehaviour
             rb.AddForce(transform.up * speed);
         }
 
-       // this.transform.Rotate(Vector3.up, leftright*Time.deltaTime*turningSpeed);
+        // this.transform.Rotate(Vector3.up, leftright*Time.deltaTime*turningSpeed);
         //mainCycle.transform.Rotate(mainCycle. transform.forward, turningSpeed *Time.deltaTime* leftright);
         //front.transform.Rotate(-frontToRotatePoint.transform.up, 2 * leftright);
 
@@ -79,7 +93,7 @@ public class PlayerMotor : MonoBehaviour
             swipeTime = (endTime - startTime);
             if (swipeTime < maxTime && swipeDistance > minSwipeDist)
             {
-                swipe();
+                //swipe();
             }
         }
 
@@ -96,19 +110,18 @@ public class PlayerMotor : MonoBehaviour
     }
     public void turnLeft()
     {
-        //this.transform.Rotate(Vector3.up, -1* Time.deltaTime * turningSpeed);
-        front1.motorTorque = -1 * Time.deltaTime * turningSpeed;
-        front2.motorTorque = -1 * Time.deltaTime * turningSpeed;
-
+        transform.Rotate(transform.up, turningSpeed * Time.deltaTime * -1);
+        mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
 
 
     }
     public void turnRight()
     {
 
-        //this.transform.Rotate(Vector3.up, Time.deltaTime * turningSpeed);
-        front1.motorTorque = 1* Time.deltaTime * turningSpeed;
-        front2.motorTorque = 1 * Time.deltaTime * turningSpeed;
+        transform.Rotate(transform.up, turningSpeed * Time.deltaTime);
+        mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
+
 
     }
 }
+
