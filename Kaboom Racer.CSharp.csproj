@@ -85,6 +85,7 @@
     <Compile Include="Assets\scripts\Menus.cs" />
     <Compile Include="Assets\scripts\Moove.cs" />
     <Compile Include="Assets\scripts\PlayerMotor.cs" />
+    <Compile Include="Assets\scripts\RayGenerate.cs" />
     <Compile Include="Assets\scripts\TileManager.cs" />
   </ItemGroup>
   <ItemGroup>

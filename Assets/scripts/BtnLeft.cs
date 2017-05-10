@@ -19,12 +19,12 @@ public class BtnLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	}
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("The mouse click was released");
+       // Debug.Log("The mouse click was released");
         btnLeftPressed = false;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("rightPressed");
+       // Debug.Log("rightPressed");
         btnLeftPressed = true;
     }
    

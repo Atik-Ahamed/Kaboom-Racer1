@@ -29,7 +29,7 @@ public class PlayerMotor : MonoBehaviour
     //public GameObject front;
     //public GameObject frontToRotatePoint;
     Rigidbody rb;
-
+    public Button hitBUtton;
 
     float yAsixRotation;
     public void setBUttonRotation(float value)
@@ -42,11 +42,13 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        hitBUtton.interactable = false;
+
     }
 
     void FixedUpdate()
     {
-        Debug.Log("Button rotaion" + buttonRotation);
+      //  Debug.Log("Button rotaion" + buttonRotation);
 
         //Debug.Log(front1.steerAngle);
        // leftright = Input.acceleration.x != 0 ? Input.acceleration.x : Input.GetAxis("Horizontal");
@@ -60,7 +62,7 @@ public class PlayerMotor : MonoBehaviour
         rb.AddForce(transform.forward * speed * Time.deltaTime);
 
         transform.Rotate(transform.up, turningSpeed * Time.deltaTime * leftright);
-        Debug.Log(yAsixRotation);
+        //Debug.Log(yAsixRotation);
 
         mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * leftright);
 
@@ -122,6 +124,16 @@ public class PlayerMotor : MonoBehaviour
         mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
 
 
+    }
+    void OnCollisionEnter(Collision col)
+    {
+        //Debug.Log(col.gameObject.name);
+        if(col.gameObject.tag=="weapon")
+        {
+            hitBUtton.interactable = true;
+            //Debug.Log(col.gameObject);
+            Destroy(col.gameObject);
+        }
     }
 }
 
