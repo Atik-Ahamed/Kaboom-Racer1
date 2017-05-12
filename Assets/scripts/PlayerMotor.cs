@@ -128,11 +128,15 @@ public class PlayerMotor : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         //Debug.Log(col.gameObject.name);
-        if(col.gameObject.tag=="weapon")
+        if (col.gameObject.tag == "weapon")
         {
             hitBUtton.interactable = true;
             //Debug.Log(col.gameObject);
             Destroy(col.gameObject);
+        }
+        else if (col.gameObject.tag == "enemy")
+        {
+            Menus.Restart();
         }
     }
 }

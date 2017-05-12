@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Menus : MonoBehaviour {
 
-	public void Restart()
+	public static void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void ButtonRestart()
     {
         SceneManager.LoadScene(0);
     }
 }
+

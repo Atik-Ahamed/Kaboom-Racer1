@@ -23,12 +23,16 @@ public class TileManager : MonoBehaviour
 
     void Update()
     {
-        if (spawnZ - playerTransform.position.z < 100.0f)
+        if(playerTransform!=null)
         {
-            moveTile();
-            //spawnTile();
-           // deleteTile();
+            if (spawnZ - playerTransform.position.z < 100.0f)
+            {
+                moveTile();
+                //spawnTile();
+                // deleteTile();
+            }
         }
+        
     }
     public void spawnTile(int prefabIndex = -1)
     {
