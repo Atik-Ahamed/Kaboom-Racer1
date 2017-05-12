@@ -6,10 +6,22 @@ using System.Collections;
 
 public class PlayerMotor : MonoBehaviour
 {
+  /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
+    public GameObject mainCycle;
     //public WheelCollider front1;
     // public WheelCollider front2;
-    private float buttonRotation;
     private WheelCollider back;
+    //public GameObject front;
+    //public GameObject frontToRotatePoint;
+    Rigidbody rb;
+    public Button hitBUtton;
+    /// //////////////////////////////////////////Game Objects  section end/////////////////////////////////////
+
+
+
+  ///////////////////////////////////////Variables section start/////////////////////////////////////////
+    private float speed = 100f;  
+    private float buttonRotation;
     public float maxTime = 0.5f;
     public float minSwipeDist = 50f;
     private float turningSpeed = 70f;
@@ -17,27 +29,22 @@ public class PlayerMotor : MonoBehaviour
     float endTime;
     float swipeDistance;
     float swipeTime;
-    Vector3 startPose;
-    Vector3 endPose;
-    private float speed = 100f;   /// <summary>
-                                  /// ////this is the moving speed
-                                  /// </summary>
+    float yAsixRotation;
     private float jumpForce = 100f;
     private float leftright;
-    private float forwardback; //up down
-    public GameObject mainCycle;
-    //public GameObject front;
-    //public GameObject frontToRotatePoint;
-    Rigidbody rb;
-    public Button hitBUtton;
+    private float forwardback;
+    Vector3 startPose;
+    Vector3 endPose;
+    /// /////////////////////////////////////////////variables section end/////////////////////////////////
 
-    float yAsixRotation;
-    public void setBUttonRotation(float value)
-    {
-        buttonRotation += value;
-    }
-    public float getButtonRotaion()
-    { return buttonRotation; }
+
+
+   //////////////getters and setters start///////////////////////////////////////////
+    public void setBUttonRotation(float value) { buttonRotation += value;}
+    public float getButtonRotaion() { return buttonRotation; }
+    //////////////getters and setters end///////////////////////////////////////////
+
+
 
     void Start()
     {

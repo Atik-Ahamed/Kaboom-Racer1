@@ -10,15 +10,19 @@ public class RayGenerate : MonoBehaviour
     public void generateRay()
     {
         shotGunSound = this.GetComponent<AudioSource>();
-        shotGunSound.Play();       
+        shotGunSound.Play();
         RaycastHit hit;
-        Physics.Raycast(transform.position, transform.forward, out hit);
-        Debug.DrawRay(transform.position, transform.forward, Color.green);
         hitButton.interactable = false;
-        if (hit.collider.gameObject.tag == "enemy")
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 10f))
         {
-            Debug.Log(hit.collider.gameObject);
-            Destroy(hit.collider.gameObject);
+            if (hit.collider.gameObject.tag == "enemy")
+            {
+                //Debug.Log(hit.collider.gameObject);
+                Destroy(hit.collider.gameObject);
+            }
         }
+       // Debug.DrawRay(transform.position, transform.forward, Color.green);
+        
+        
     }
 }
