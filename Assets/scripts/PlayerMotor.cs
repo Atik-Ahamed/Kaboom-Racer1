@@ -76,7 +76,7 @@ public class PlayerMotor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(transform.up * speed);
+            rb.AddForce(transform.up * speed*10000);
         }
 
         // this.transform.Rotate(Vector3.up, leftright*Time.deltaTime*turningSpeed);
