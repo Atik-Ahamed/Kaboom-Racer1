@@ -7,10 +7,10 @@ public class Ball : MonoBehaviour {
 	
    void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Touched");
+        //Debug.Log("Touched");
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TouchedWithTrigger");
+        //Debug.Log("TouchedWithTrigger");
     }
 }

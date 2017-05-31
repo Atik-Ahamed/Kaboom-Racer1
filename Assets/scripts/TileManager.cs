@@ -41,8 +41,8 @@ public class TileManager : MonoBehaviour
         go = Instantiate(tilePrefabs[rand]);
         go.transform.SetParent(transform);
         go.transform.position = Vector3.forward * spawnZ;
-        Debug.Log(spawnZ);
-        Debug.Log("TIle length:" + tileLenght);
+        //Debug.Log(spawnZ);
+        //Debug.Log("TIle length:" + tileLenght);
         spawnZ += tileLenght;
         activeTiles.Add(go);
     }

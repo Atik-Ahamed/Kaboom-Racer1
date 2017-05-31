@@ -9,8 +9,9 @@ public class RayGenerate : MonoBehaviour
     AudioSource shotGunSound;
     Animator anmtr;
     int fired_anim_Hash;
-    public void generateRay()
+   public void generateRay()
     {
+       // fired_anim_Hash = Animator.StringToHash("fired");
         shotGunSound = this.GetComponent<AudioSource>();
         shotGunSound.Play();
         RaycastHit hit;
@@ -20,8 +21,7 @@ public class RayGenerate : MonoBehaviour
             if (hit.collider.gameObject.tag == "enemy")
             {
                 anmtr = hit.collider.gameObject.GetComponentInChildren<Animator>();
-                fired_anim_Hash = Animator.StringToHash("fired");
-                anmtr.SetBool(fired_anim_Hash, true);
+                anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);
                 hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
                 Destroy(hit.collider.gameObject,2.0f);

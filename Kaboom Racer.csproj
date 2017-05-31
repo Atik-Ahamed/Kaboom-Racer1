@@ -89,9 +89,9 @@
     <Compile Include="Assets\scripts\TileManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Bike\Shaders\AlphaTest_Complete.shader" />
-    <None Include="Assets\Fantasy Skybox FREE\Fog and Ambient reference.txt" />
-    <None Include="Assets\Fantasy Skybox FREE\Readme.txt" />
+    <None Include="Assets\prefabs\Bike\Shaders\AlphaTest_Complete.shader" />
+    <None Include="Assets\skyBox\Fantasy Skybox FREE\Fog and Ambient reference.txt" />
+    <None Include="Assets\skyBox\Fantasy Skybox FREE\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

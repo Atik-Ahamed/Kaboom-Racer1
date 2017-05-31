@@ -6,7 +6,7 @@ using System.Collections;
 
 public class PlayerMotor : MonoBehaviour
 {
-  /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
+    /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
     public GameObject mainCycle;
     //public WheelCollider front1;
     // public WheelCollider front2;
@@ -19,8 +19,9 @@ public class PlayerMotor : MonoBehaviour
 
 
 
-  ///////////////////////////////////////Variables section start/////////////////////////////////////////
-    private float speed = 100f;  
+    ///////////////////////////////////////Variables section start/////////////////////////////////////////
+    private const float RAD_TO_DEG_EUL = 115.6383f;
+    private float speed = 100f;
     private float buttonRotation;
     public float maxTime = 0.5f;
     public float minSwipeDist = 50f;
@@ -39,8 +40,8 @@ public class PlayerMotor : MonoBehaviour
 
 
 
-   //////////////getters and setters start///////////////////////////////////////////
-    public void setBUttonRotation(float value) { buttonRotation += value;}
+    //////////////getters and setters start///////////////////////////////////////////
+    public void setBUttonRotation(float value) { buttonRotation += value; }
     public float getButtonRotaion() { return buttonRotation; }
     //////////////getters and setters end///////////////////////////////////////////
 
@@ -55,33 +56,27 @@ public class PlayerMotor : MonoBehaviour
 
     void FixedUpdate()
     {
-      //  Debug.Log("Button rotaion" + buttonRotation);
 
-        //Debug.Log(front1.steerAngle);
-       // leftright = Input.acceleration.x != 0 ? Input.acceleration.x : Input.GetAxis("Horizontal");
-        //front1.motorTorque = speed;
-        // front2.motorTorque = speed;
-        //front1.steerAngle = turningSpeed * leftright;
-        // front2.steerAngle = turningSpeed * leftright;
 
-        yAsixRotation = transform.rotation.y;
+        rb.AddForce(transform.forward * speed * Time.deltaTime);           //forward movement speed
 
-        rb.AddForce(transform.forward * speed * Time.deltaTime);
+        /////////clamping z and y rotation///////////
 
-        transform.Rotate(transform.up, turningSpeed * Time.deltaTime * leftright);
-        //Debug.Log(yAsixRotation);
+        //Debug.Log("Rotation z :" + transform.rotation.z*115.6383);
 
-        mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * leftright);
+        if ((RAD_TO_DEG_EUL * transform.rotation.z) > 30) { transform.rotation = Quaternion.Euler(new Vector3(0,transform.rotation.y*Mathf.Rad2Deg,30f)); }
+        if ((RAD_TO_DEG_EUL * transform.rotation.z) < -30) { transform.rotation = Quaternion.Euler(0f, transform.rotation.y* RAD_TO_DEG_EUL, -30f); }
+        if ((RAD_TO_DEG_EUL * transform.rotation.y) > 90) { transform.rotation = Quaternion.Euler(0f, 90f, transform.rotation.z* RAD_TO_DEG_EUL); }
+        if ((RAD_TO_DEG_EUL * transform.rotation.y) < -90) { transform.rotation = Quaternion.Euler(0f, -90f, transform.rotation.z* RAD_TO_DEG_EUL); }
+       mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
+        /////////////clampping done z and y rotation////////////////
+
 
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(transform.up * speed*10000);
+            rb.AddForce(transform.up * speed * 10000);
         }
-
-        // this.transform.Rotate(Vector3.up, leftright*Time.deltaTime*turningSpeed);
-        //mainCycle.transform.Rotate(mainCycle. transform.forward, turningSpeed *Time.deltaTime* leftright);
-        //front.transform.Rotate(-frontToRotatePoint.transform.up, 2 * leftright);
 
         if (Input.touchCount > 0)
         {
