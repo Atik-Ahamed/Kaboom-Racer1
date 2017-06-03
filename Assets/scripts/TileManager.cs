@@ -8,7 +8,7 @@ public class TileManager : MonoBehaviour
     public GameObject[] tilePrefabs;
     private float spawnZ =0;
     public Transform playerTransform;
-    private float tileLenght = 100.0f;
+    private float tileLenght = 22f;
     private int amountTilesOnScreen = 4;
     public List<GameObject> activeTiles;
    
@@ -23,9 +23,10 @@ public class TileManager : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log("Size is : "+tilePrefabs[1].GetComponentInChildren<MeshRenderer>().bounds.);
         if(playerTransform!=null)
         {
-            if (spawnZ - playerTransform.position.z < 100.0f)
+            if (spawnZ - playerTransform.position.z < 10f)
             {
                // moveTile();
                 spawnTile();

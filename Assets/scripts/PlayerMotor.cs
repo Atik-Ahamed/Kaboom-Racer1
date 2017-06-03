@@ -36,6 +36,8 @@ public class PlayerMotor : MonoBehaviour
     private float forwardback;
     Vector3 startPose;
     Vector3 endPose;
+    private int startAnimIndex = 0;
+    private int endAnimIndex = 500;
     /// /////////////////////////////////////////////variables section end/////////////////////////////////
 
 
@@ -129,10 +131,15 @@ public class PlayerMotor : MonoBehaviour
     }
     void OnCollisionEnter(Collision col)
     {
-        //Debug.Log(col.gameObject.name);
+        Debug.Log(col.gameObject.name);
         if (col.gameObject.tag == "weapon")
         {
             hitBUtton.interactable = true;
+            //here gose the animation index selector randomly and pass it to raygenerator//
+
+            int aniIndex = Random.Range(startAnimIndex , endAnimIndex);
+            RayGenerate.setAnimIndex(aniIndex%2);
+            //Debug.Log("Passed index : " + aniIndex);
             //Debug.Log(col.gameObject);
             Destroy(col.gameObject);
         }
