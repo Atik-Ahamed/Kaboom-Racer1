@@ -24,6 +24,9 @@ public class RayGenerate : MonoBehaviour
             case 1:
                 throwStone();
                 break;
+            case 2:
+                jumpFight();
+                break;
         }
     }
     
@@ -53,6 +56,24 @@ public class RayGenerate : MonoBehaviour
     {
         hitButton.interactable = false;
         playerAnimator.Play("throw");
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
+        {
+            if (hit.collider.gameObject.tag == "enemy")
+            {
+                anmtr = hit.collider.gameObject.GetComponentInChildren<Animator>();
+                anmtr.SetBool("fired", true);
+                //Debug.Log(hit.collider.gameObject);
+                hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
+                Destroy(hit.collider.gameObject, 2.0f);
+
+            }
+        }
+
+    }
+    public void jumpFight()
+    {
+        hitButton.interactable = false;
+        playerAnimator.Play("jumpFight");
         if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
         {
             if (hit.collider.gameObject.tag == "enemy")

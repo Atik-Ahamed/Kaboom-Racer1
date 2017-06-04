@@ -138,7 +138,7 @@ public class PlayerMotor : MonoBehaviour
             //here gose the animation index selector randomly and pass it to raygenerator//
 
             int aniIndex = Random.Range(startAnimIndex , endAnimIndex);
-            RayGenerate.setAnimIndex(aniIndex%2);
+            RayGenerate.setAnimIndex(aniIndex%3);
             //Debug.Log("Passed index : " + aniIndex);
             //Debug.Log(col.gameObject);
             Destroy(col.gameObject);
