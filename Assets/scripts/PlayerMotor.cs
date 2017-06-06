@@ -7,6 +7,8 @@ using System.Collections;
 public class PlayerMotor : MonoBehaviour
 {
     /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
+   // public Mesh[] meshes;
+    public GameObject mainPlayer;
     public GameObject mainCycle;
     //public WheelCollider front1;
     // public WheelCollider front2;
@@ -49,10 +51,12 @@ public class PlayerMotor : MonoBehaviour
 
 
 
-    void Start()
-    {
+    void Awake()
+    {                                                                               
         rb = GetComponent<Rigidbody>();
-        hitBUtton.interactable = false;
+        //SkinnedMeshRenderer newMesh=mainPlayer.GetComponent<SkinnedMeshRenderer>();
+       // newMesh.sharedMesh = meshes[0];
+
 
     }
 
