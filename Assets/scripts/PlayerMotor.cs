@@ -52,7 +52,8 @@ public class PlayerMotor : MonoBehaviour
 
 
     void Awake()
-    {                                                                               
+    {
+        hitBUtton.interactable = false;                                                                              
         rb = GetComponent<Rigidbody>();
         //SkinnedMeshRenderer newMesh=mainPlayer.GetComponent<SkinnedMeshRenderer>();
        // newMesh.sharedMesh = meshes[0];

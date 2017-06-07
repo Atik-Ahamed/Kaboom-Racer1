@@ -43,7 +43,7 @@ public class RayGenerate : MonoBehaviour
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);
                 hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
-                Destroy(hit.collider.gameObject,2.0f);
+                Destroy(hit.collider.gameObject,1.0f);
 
             }
         }
@@ -64,7 +64,7 @@ public class RayGenerate : MonoBehaviour
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);
                 hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
-                Destroy(hit.collider.gameObject, 2.0f);
+                Destroy(hit.collider.gameObject, 1.0f);
 
             }
         }
@@ -82,7 +82,7 @@ public class RayGenerate : MonoBehaviour
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);
                 hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
-                Destroy(hit.collider.gameObject, 2.0f);
+                Destroy(hit.collider.gameObject, 1.0f);
 
             }
         }
