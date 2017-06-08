@@ -78,6 +78,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Book-Page Curl\scripts\AutoFlip.cs" />
+    <Compile Include="Assets\Book-Page Curl\scripts\Book.cs" />
+    <Compile Include="Assets\Particle Ribbon\Scripts\ReverseNormals.cs" />
+    <Compile Include="Assets\Time Of Day System Free\Examples\Scripts\Example_TOD_Night_Particles.cs" />
+    <Compile Include="Assets\Time Of Day System Free\Examples\Scripts\Example_UI_Manager.cs" />
+    <Compile Include="Assets\Time Of Day System Free\Scripts\DisplayTime.cs" />
+    <Compile Include="Assets\Time Of Day System Free\Scripts\TimeOfDay.cs" />
+    <Compile Include="Assets\Time Of Day System Free\Scripts\TimeOfDayManager.cs" />
     <Compile Include="Assets\scripts\Ball.cs" />
     <Compile Include="Assets\scripts\BtnLeft.cs" />
     <Compile Include="Assets\scripts\BtnRight.cs" />
@@ -89,6 +97,12 @@
     <Compile Include="Assets\scripts\TileManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Particle Ribbon\readme_Simple_Particle_Ribbon.txt" />
+    <None Include="Assets\Time Of Day System Free\Documentation\ChangeLog.txt" />
+    <None Include="Assets\Time Of Day System Free\LICENSE.txt" />
+    <None Include="Assets\Time Of Day System Free\Shaders\Readme.txt" />
+    <None Include="Assets\Time Of Day System Free\Shaders\SkyboxProceduralInclude.cginc" />
+    <None Include="Assets\Time Of Day System Free\Shaders\Unity-Custom-Skybox-Procedural.shader" />
     <None Include="Assets\prefabs\Bike\Shaders\AlphaTest_Complete.shader" />
     <None Include="Assets\skyBox\Fantasy Skybox FREE\Fog and Ambient reference.txt" />
     <None Include="Assets\skyBox\Fantasy Skybox FREE\Readme.txt" />

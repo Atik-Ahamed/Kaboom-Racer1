@@ -7,6 +7,7 @@ public class RayGenerate : MonoBehaviour
 {
     private static int animIndex;
     public Button hitButton;
+    public GameObject fireRibbon;
     AudioSource shotGunSound;
     Animator anmtr;
     public Animator playerAnimator;
@@ -32,8 +33,12 @@ public class RayGenerate : MonoBehaviour
     
    public void generateRay()
     {
-       // fired_anim_Hash = Animator.StringToHash("fired");
-        
+        // fired_anim_Hash = Animator.StringToHash("fired");
+        GameObject fr=Instantiate(fireRibbon, transform.position, transform.rotation) as GameObject;
+        if (fireRibbon != null)
+        {
+            Destroy(fr, 1.0f);
+        }
         hitButton.interactable = false;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
         {
@@ -47,6 +52,7 @@ public class RayGenerate : MonoBehaviour
 
             }
         }
+
         shotGunSound = this.GetComponent<AudioSource>();
         shotGunSound.Play();
 

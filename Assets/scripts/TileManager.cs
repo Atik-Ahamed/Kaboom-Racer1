@@ -6,12 +6,12 @@ public class TileManager : MonoBehaviour
 {
 
     public GameObject[] tilePrefabs;
-    private float spawnZ =0;
+    private float spawnZ = 0;
     public Transform playerTransform;
-    private float tileLenght = 22f;
+    private float tileLenght = 0f;
     private int amountTilesOnScreen = 4;
     public List<GameObject> activeTiles;
-   
+
     void Start()
     {
         for (int i = 0; i < amountTilesOnScreen; i++)
@@ -23,17 +23,17 @@ public class TileManager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("Size is : "+tilePrefabs[1].GetComponentInChildren<MeshRenderer>().bounds.);
-        if(playerTransform!=null)
+        //Debug.Log("Size is : " + tilePrefabs[1].GetComponentInChildren<MeshRenderer>().bounds.size.z);
+        if (playerTransform != null)
         {
-            if (spawnZ - playerTransform.position.z < 10f)
+            if (spawnZ - playerTransform.position.z < 100f)
             {
-               // moveTile();
+                // moveTile();
                 spawnTile();
-                 deleteTile();
+                deleteTile();
             }
         }
-        
+
     }
     public void spawnTile(int prefabIndex = -1)
     {
@@ -44,6 +44,10 @@ public class TileManager : MonoBehaviour
         go.transform.position = Vector3.forward * spawnZ;
         //Debug.Log(spawnZ);
         //Debug.Log("TIle length:" + tileLenght);
+        Transform plane = go.transform.GetChild(0);
+        tileLenght = Mathf.Max(plane.GetComponent<MeshRenderer>().bounds.size.z, plane.GetComponent<MeshRenderer>().bounds.size.y);
+        tileLenght-=0.5f;
+        Debug.Log("plane's length is : "+tileLenght+"Spawn Point "+spawnZ);
         spawnZ += tileLenght;
         activeTiles.Add(go);
     }
@@ -56,19 +60,20 @@ public class TileManager : MonoBehaviour
     {
         int rand = 2;
         int previous = rand;
-        
-         rand = Random.Range(0, 3);
-         if (rand==previous)
+
+        rand = Random.Range(0, 3);
+        if (rand == previous)
         {
             moveTile();
-        } else
+        }
+        else
         {
             previous = rand;
             tilePrefabs[rand].transform.position = (new Vector3(0, 0, spawnZ));
             tilePrefabs[rand].transform.SetParent(transform);
             spawnZ += tileLenght;
         }
-        
+
     }
-   
+
 }
