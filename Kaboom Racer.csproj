@@ -81,6 +81,10 @@
     <Compile Include="Assets\Book-Page Curl\scripts\AutoFlip.cs" />
     <Compile Include="Assets\Book-Page Curl\scripts\Book.cs" />
     <Compile Include="Assets\Particle Ribbon\Scripts\ReverseNormals.cs" />
+    <Compile Include="Assets\SlowMotionController\Demo\ApplyingSlowMotion.cs" />
+    <Compile Include="Assets\SlowMotionController\Demo\Movement.cs" />
+    <Compile Include="Assets\SlowMotionController\Scripts\SingletonMonoBehavior.cs" />
+    <Compile Include="Assets\SlowMotionController\Scripts\SlowMotionController.cs" />
     <Compile Include="Assets\Time Of Day System Free\Examples\Scripts\Example_TOD_Night_Particles.cs" />
     <Compile Include="Assets\Time Of Day System Free\Examples\Scripts\Example_UI_Manager.cs" />
     <Compile Include="Assets\Time Of Day System Free\Scripts\DisplayTime.cs" />
@@ -98,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Particle Ribbon\readme_Simple_Particle_Ribbon.txt" />
+    <None Include="Assets\SlowMotionController\README.txt" />
     <None Include="Assets\Time Of Day System Free\Documentation\ChangeLog.txt" />
     <None Include="Assets\Time Of Day System Free\LICENSE.txt" />
     <None Include="Assets\Time Of Day System Free\Shaders\Readme.txt" />

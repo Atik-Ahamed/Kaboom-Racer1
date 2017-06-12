@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Particle Ribbon\readme_Simple_Particle_Ribbon.txt" />
+    <None Include="Assets\SlowMotionController\README.txt" />
     <None Include="Assets\Time Of Day System Free\Documentation\ChangeLog.txt" />
     <None Include="Assets\Time Of Day System Free\LICENSE.txt" />
     <None Include="Assets\Time Of Day System Free\Shaders\Readme.txt" />
