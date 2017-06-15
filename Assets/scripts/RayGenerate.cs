@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RayGenerate : MonoBehaviour
 {
+    public GameObject blast;
     private static int animIndex;
     public Button hitButton;
     public GameObject fireRibbon;
@@ -35,6 +36,7 @@ public class RayGenerate : MonoBehaviour
     {
         // fired_anim_Hash = Animator.StringToHash("fired");
         GameObject fr=Instantiate(fireRibbon, transform.position, transform.rotation) as GameObject;
+      
         if (fireRibbon != null)
         {
             Destroy(fr, 1.0f);
@@ -44,6 +46,9 @@ public class RayGenerate : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "enemy")
             {
+                GameObject exploison = GameObject.Instantiate(blast,hit.collider.gameObject.transform.position,Quaternion.identity,hit
+                    .collider.gameObject.transform) as GameObject;
+
                 anmtr = hit.collider.gameObject.GetComponentInChildren<Animator>();
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);

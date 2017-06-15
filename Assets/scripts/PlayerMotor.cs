@@ -7,8 +7,9 @@ using System.Collections;
 public class PlayerMotor : MonoBehaviour
 {
     /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
-   // public Mesh[] meshes;
-    public GameObject mainPlayer;
+    public GameObject weaponEffect;
+    // public Mesh[] meshes;
+    //public GameObject mainPlayer;
     public GameObject mainCycle;
     //public WheelCollider front1;
     // public WheelCollider front2;
@@ -71,19 +72,22 @@ public class PlayerMotor : MonoBehaviour
 
         /////////clamping z and y rotation///////////
 
-        //Debug.Log("Rotation z :" + transform.rotation.z*115.6383);
+        // Debug.Log("Rotation z :" + transform.rotation.z);
+        //Debug.Log("Rotation y :" + transform.rotation.y);
 
-        if ((RAD_TO_DEG_EUL * transform.rotation.z) > 30) { transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y * Mathf.Rad2Deg, 30f)); }
-        if ((RAD_TO_DEG_EUL * transform.rotation.z) < -30) { transform.rotation = Quaternion.Euler(0f, transform.rotation.y * RAD_TO_DEG_EUL, -30f); }
-        if ((RAD_TO_DEG_EUL * transform.rotation.y) > 90) { transform.rotation = Quaternion.Euler(0f, 90f, transform.rotation.z * RAD_TO_DEG_EUL); }
-        if ((RAD_TO_DEG_EUL * transform.rotation.y) < -90) { transform.rotation = Quaternion.Euler(0f, -90f, transform.rotation.z * RAD_TO_DEG_EUL); }
+
+        if ((RAD_TO_DEG_EUL * transform.rotation.z) >= 30) { transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y * Mathf.Rad2Deg, 31f)); }
+        if ((RAD_TO_DEG_EUL * transform.rotation.z) <= -30) { transform.rotation = Quaternion.Euler(0f, transform.rotation.y * RAD_TO_DEG_EUL, -31f); }
+        if ((RAD_TO_DEG_EUL * transform.rotation.y) >= 90) { transform.rotation = Quaternion.Euler(0f, 91f, transform.rotation.z * RAD_TO_DEG_EUL); }
+        if ((RAD_TO_DEG_EUL * transform.rotation.y) <= -90) { transform.rotation = Quaternion.Euler(0f, -91f, transform.rotation.z * RAD_TO_DEG_EUL); }
+
         mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
         /////////////clampping done z and y rotation////////////////
 
         ////////////////////torchLigt Section/////
-        if (sun.childCount==2) { torchLight.enabled = true; }
+        if (sun.childCount == 2) { torchLight.enabled = true; }
         else if (sun.childCount == 1) { torchLight.enabled = false; }
-       // Debug.Log("Sun rotation : " + sun.rotation.x);
+        // Debug.Log("Sun rotation : " + sun.rotation.x);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(transform.up * speed * 10000);
@@ -143,6 +147,7 @@ public class PlayerMotor : MonoBehaviour
         Debug.Log(col.gameObject.name);
         if (col.gameObject.tag == "weapon")
         {
+            GameObject wf = GameObject.Instantiate(weaponEffect, col.gameObject.transform.position, Quaternion.identity,transform)as GameObject;
             hitBUtton.interactable = true;
             //here gose the animation index selector randomly and pass it to raygenerator//
 
@@ -151,6 +156,7 @@ public class PlayerMotor : MonoBehaviour
             //Debug.Log("Passed index : " + aniIndex);
             //Debug.Log(col.gameObject);
             Destroy(col.gameObject);
+            Destroy(wf, 3.0f);
         }
         else if (col.gameObject.tag == "enemy")
         {
