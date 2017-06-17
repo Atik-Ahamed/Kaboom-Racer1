@@ -7,11 +7,11 @@ public class Menus : MonoBehaviour {
 
 	public static void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void ButtonRestart()
     {
-        SceneManager.LoadScene(0);
+        Restart();
     }
 }
 

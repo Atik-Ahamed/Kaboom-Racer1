@@ -145,9 +145,17 @@ public class PlayerMotor : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         Debug.Log(col.gameObject.name);
+     
+        if (col.gameObject.tag == "enemy")
+        {
+            Menus.Restart();
+        }
+    }
+    void OnTriggerEnter(Collider col)
+    {
         if (col.gameObject.tag == "weapon")
         {
-            GameObject wf = GameObject.Instantiate(weaponEffect, col.gameObject.transform.position, Quaternion.identity,transform)as GameObject;
+            GameObject wf = GameObject.Instantiate(weaponEffect, col.gameObject.transform.position, Quaternion.identity, transform) as GameObject;
             hitBUtton.interactable = true;
             //here gose the animation index selector randomly and pass it to raygenerator//
 
@@ -157,10 +165,6 @@ public class PlayerMotor : MonoBehaviour
             //Debug.Log(col.gameObject);
             Destroy(col.gameObject);
             Destroy(wf, 3.0f);
-        }
-        else if (col.gameObject.tag == "enemy")
-        {
-            Menus.Restart();
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RayGenerate : MonoBehaviour
 {
+    private float destroyTime = 0.5f;
     public GameObject blast;
     private static int animIndex;
     public Button hitButton;
@@ -53,7 +54,7 @@ public class RayGenerate : MonoBehaviour
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);
                 hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
-                Destroy(hit.collider.gameObject,1.0f);
+                Destroy(hit.collider.gameObject,destroyTime);
 
             }
         }
@@ -75,7 +76,7 @@ public class RayGenerate : MonoBehaviour
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);
                 hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
-                Destroy(hit.collider.gameObject, 1.0f);
+                Destroy(hit.collider.gameObject, destroyTime);
 
             }
         }
@@ -93,7 +94,7 @@ public class RayGenerate : MonoBehaviour
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);
                 hit.collider.gameObject.GetComponent<Collider>().isTrigger = true;
-                Destroy(hit.collider.gameObject, 1.0f);
+                Destroy(hit.collider.gameObject, destroyTime);
 
             }
         }

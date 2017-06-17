@@ -78,8 +78,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Book-Page Curl\scripts\AutoFlip.cs" />
-    <Compile Include="Assets\Book-Page Curl\scripts\Book.cs" />
+    <ProjectReference Include="Kaboom Racer.Plugins.csproj">
+      <Project>{68501C1F-8987-BBC3-7F1F-04D22182AD2D}</Project>
+      <Name>Kaboom Racer.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Addons\CameraPathCreator\DEMO\CPC_DEMO_UpDown.cs" />
+    <Compile Include="Assets\Addons\CameraPathCreator\Scripts\CPC_CameraPath.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\Sample Supporting Emitters\DetonatorSprayHelper.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\System\Detonator.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\System\DetonatorBurstEmitter.cs" />
@@ -97,6 +103,14 @@
     <Compile Include="Assets\Detonator Explosion Framework\System\DetonatorSpray.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\TestScene\DetonatorTest.cs" />
     <Compile Include="Assets\Detonator Explosion Framework\TestScene\TouchToMouse.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeByDistance.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnKeyPress.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnTrigger.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Demo\ShakeDemo.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Scripts\CameraShakeInstance.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Scripts\CameraShakePresets.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Scripts\CameraShaker.cs" />
+    <Compile Include="Assets\EZ Camera Shake\Scripts\Utilities\CameraUtilities.cs" />
     <Compile Include="Assets\Particle Ribbon\Scripts\ReverseNormals.cs" />
     <Compile Include="Assets\SlowMotionController\Demo\ApplyingSlowMotion.cs" />
     <Compile Include="Assets\SlowMotionController\Demo\Movement.cs" />
@@ -122,6 +136,7 @@
   <ItemGroup>
     <None Include="Assets\Detonator Explosion Framework\Resources\Detonator\Textures\HeatDistort.shader" />
     <None Include="Assets\Particle Ribbon\readme_Simple_Particle_Ribbon.txt" />
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\SlowMotionController\README.txt" />
     <None Include="Assets\Time Of Day System Free\Documentation\ChangeLog.txt" />
     <None Include="Assets\Time Of Day System Free\LICENSE.txt" />

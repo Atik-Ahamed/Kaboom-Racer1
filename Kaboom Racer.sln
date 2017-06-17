@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kaboom Racer.Plugins", "Kaboom Racer.Plugins.csproj", "{68501C1F-8987-BBC3-7F1F-04D22182AD2D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kaboom Racer", "Kaboom Racer.csproj", "{9D5D3112-6F92-D1F9-1624-7E63C05CCD23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kaboom Racer.Editor", "Kaboom Racer.Editor.csproj", "{817EF9E7-4E0C-3C06-C77A-9F15FC6673DE}"
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68501C1F-8987-BBC3-7F1F-04D22182AD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68501C1F-8987-BBC3-7F1F-04D22182AD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68501C1F-8987-BBC3-7F1F-04D22182AD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68501C1F-8987-BBC3-7F1F-04D22182AD2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D5D3112-6F92-D1F9-1624-7E63C05CCD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D5D3112-6F92-D1F9-1624-7E63C05CCD23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D5D3112-6F92-D1F9-1624-7E63C05CCD23}.Release|Any CPU.ActiveCfg = Release|Any CPU
