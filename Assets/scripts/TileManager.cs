@@ -38,7 +38,7 @@ public class TileManager : MonoBehaviour
     public void spawnTile(int prefabIndex = -1)
     {
         GameObject go;
-        int rand = Random.Range(0, 4);
+        int rand = Random.Range(0, 5);
         go = Instantiate(tilePrefabs[rand]);
         go.transform.SetParent(transform);
         go.transform.position = new Vector3(0,-.03f,1*spawnZ);

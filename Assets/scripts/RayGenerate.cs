@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RayGenerate : MonoBehaviour
 {
-    private float destroyTime = 0.5f;
+    private float destroyTime = 1.0f;
     public GameObject blast;
     private static int animIndex;
     public Button hitButton;

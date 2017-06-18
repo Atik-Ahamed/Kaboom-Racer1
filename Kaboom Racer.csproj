@@ -125,6 +125,7 @@
     <Compile Include="Assets\scripts\BtnLeft.cs" />
     <Compile Include="Assets\scripts\BtnRight.cs" />
     <Compile Include="Assets\scripts\CameraLookAt.cs" />
+    <Compile Include="Assets\scripts\EnemyMoveZaxis.cs" />
     <Compile Include="Assets\scripts\MainMenu.cs" />
     <Compile Include="Assets\scripts\Menus.cs" />
     <Compile Include="Assets\scripts\Moove.cs" />
