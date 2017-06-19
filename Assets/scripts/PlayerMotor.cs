@@ -7,7 +7,7 @@ using System.Collections;
 public class PlayerMotor : MonoBehaviour
 {
     /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
-    public GameObject weaponEffect;
+    //public GameObject weaponEffect;
     // public Mesh[] meshes;
     //public GameObject mainPlayer;
     public GameObject mainCycle;
@@ -155,16 +155,16 @@ public class PlayerMotor : MonoBehaviour
     {
         if (col.gameObject.tag == "weapon")
         {
-            GameObject wf = GameObject.Instantiate(weaponEffect, col.gameObject.transform.position, Quaternion.identity, transform) as GameObject;
+            //GameObject wf = GameObject.Instantiate(weaponEffect, col.gameObject.transform.position, Quaternion.identity, transform) as GameObject;
             hitBUtton.interactable = true;
             //here gose the animation index selector randomly and pass it to raygenerator//
 
             int aniIndex = Random.Range(startAnimIndex, endAnimIndex);
-            RayGenerate.setAnimIndex(aniIndex % 3);
+            RayGenerate.setAnimIndex(aniIndex % 4);
             //Debug.Log("Passed index : " + aniIndex);
             //Debug.Log(col.gameObject);
             Destroy(col.gameObject);
-            Destroy(wf, 3.0f);
+           // Destroy(wf, 3.0f);
         }
     }
 }

@@ -133,6 +133,7 @@
     <Compile Include="Assets\scripts\RayGenerate.cs" />
     <Compile Include="Assets\scripts\TileManager.cs" />
     <Compile Include="Assets\scripts\bicycleSelector.cs" />
+    <Compile Include="Assets\scripts\rocketScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Detonator Explosion Framework\Resources\Detonator\Textures\HeatDistort.shader" />

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RayGenerate : MonoBehaviour
 {
+    public GameObject rocket;
     private float destroyTime = 1.0f;
     public GameObject blast;
     private static int animIndex;
@@ -30,7 +31,20 @@ public class RayGenerate : MonoBehaviour
             case 2:
                 jumpFight();
                 break;
+            case 3:
+                throwRocket();
+                break;
+
         }
+    }
+    public void throwRocket()
+    {
+        hitButton.interactable = false;
+        GameObject rk = Instantiate(rocket, transform.position, transform.parent.rotation,transform.parent)as GameObject;
+        iTween.MoveTo(rk, iTween.Hash("time",3.0,"islocal",true,"z",40));
+        Destroy(rk, 1.0f);
+       // iTween.MoveTo(rk, movePos, 2.0f);
+
     }
     
    public void generateRay()
