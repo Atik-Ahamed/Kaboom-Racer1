@@ -40,8 +40,8 @@ public class RayGenerate : MonoBehaviour
     public void throwRocket()
     {
         hitButton.interactable = false;
-        GameObject rk = Instantiate(rocket, transform.position, transform.parent.rotation,transform.parent)as GameObject;
-        iTween.MoveTo(rk, iTween.Hash("time",3.0,"islocal",true,"z",40));
+        GameObject rk = Instantiate(rocket, transform.position, transform.parent.rotation)as GameObject;
+       
         Destroy(rk, 1.0f);
        // iTween.MoveTo(rk, movePos, 2.0f);
 
@@ -73,9 +73,7 @@ public class RayGenerate : MonoBehaviour
             }
         }
 
-        shotGunSound = this.GetComponent<AudioSource>();
-        shotGunSound.Play();
-
+       
 
     }
     public void throwStone()

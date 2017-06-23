@@ -10,6 +10,7 @@ public class PlayerMotor : MonoBehaviour
     //public GameObject weaponEffect;
     // public Mesh[] meshes;
     //public GameObject mainPlayer;
+    public Text timer;
     public GameObject mainCycle;
     //public WheelCollider front1;
     // public WheelCollider front2;
@@ -26,7 +27,7 @@ public class PlayerMotor : MonoBehaviour
 
     ///////////////////////////////////////Variables section start/////////////////////////////////////////
     private const float RAD_TO_DEG_EUL = 115.6383f;
-    private float speed = 100f;
+    private float speed = 110f;
     private float buttonRotation;
     public float maxTime = 0.5f;
     public float minSwipeDist = 50f;
@@ -43,6 +44,8 @@ public class PlayerMotor : MonoBehaviour
     Vector3 endPose;
     private int startAnimIndex = 0;
     private int endAnimIndex = 500;
+    private float amntTime = 30f;
+    private int multiply = 1;
     /// /////////////////////////////////////////////variables section end/////////////////////////////////
 
 
@@ -66,6 +69,31 @@ public class PlayerMotor : MonoBehaviour
 
     void FixedUpdate()
     {
+        /////////timer setting////////////
+
+        if (amntTime > 0)
+        {
+            if (amntTime < 5)
+            {
+                timer.color = Color.red;
+            }
+            amntTime -= Time.deltaTime;
+            timer.text = amntTime.ToString("F");
+        }
+        if (amntTime <= 0 && transform.position.z < 63*multiply)
+        {
+            Menus.Restart();
+        }
+        if (transform.position.z > 63 * multiply)
+        {
+            multiply++;
+            amntTime = 30;
+        }
+        Debug.Log("time " + amntTime);
+       // Debug.Log("player pos " + transform.position.z);
+
+
+        ////////////      timer setting end////////////////////
 
 
         rb.AddForce(transform.forward * speed * Time.deltaTime);           //forward movement speed

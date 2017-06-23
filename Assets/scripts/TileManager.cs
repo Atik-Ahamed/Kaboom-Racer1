@@ -11,6 +11,7 @@ public class TileManager : MonoBehaviour
     private float tileLenght = 0f;
     private int amountTilesOnScreen = 4;
     public List<GameObject> activeTiles;
+    private float yPos = 0;
 
     void Start()
     {
@@ -41,7 +42,8 @@ public class TileManager : MonoBehaviour
         int rand = Random.Range(0, 5);
         go = Instantiate(tilePrefabs[rand]);
         go.transform.SetParent(transform);
-        go.transform.position = new Vector3(0,-.03f,1*spawnZ);
+        go.transform.position = new Vector3(0,yPos,1*spawnZ);
+        yPos -= .03f;
         //Debug.Log(spawnZ);
         //Debug.Log("TIle length:" + tileLenght);
         Transform plane = go.transform.GetChild(0);
