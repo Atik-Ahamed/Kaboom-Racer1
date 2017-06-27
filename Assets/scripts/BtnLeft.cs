@@ -10,27 +10,23 @@ public class BtnLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject player;
 
-
-
-   
     bool btnLeftPressed = false;
-    void Start () {
-		
-	}
+
     public void OnPointerUp(PointerEventData eventData)
     {
-       // Debug.Log("The mouse click was released");
+        // Debug.Log("The mouse click was released");
         btnLeftPressed = false;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-       // Debug.Log("rightPressed");
+        // Debug.Log("rightPressed");
         btnLeftPressed = true;
     }
-   
+
     // Update is called once per frame
-    void Update () {
-          
+    void FixedUpdate()
+    {
+
         if (btnLeftPressed)
         {
 
@@ -43,9 +39,9 @@ public class BtnLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else
         {
-            if(player.GetComponent<PlayerMotor>().getButtonRotaion()<=0)
+            if (player.GetComponent<PlayerMotor>().getButtonRotaion() <= 0)
                 player.GetComponent<PlayerMotor>().setBUttonRotation(.09f);
         }
     }
- 
+
 }

@@ -14,10 +14,7 @@ public class BtnRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     bool btnRightPressed = false;
     bool btnLeftPressed = false;
-    void Start()
-    {
-
-    }
+   
     public void OnPointerUp(PointerEventData eventData)
     {
        // Debug.Log("The mouse click was released");
@@ -30,7 +27,7 @@ public class BtnRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (btnRightPressed)

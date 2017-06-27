@@ -7,45 +7,40 @@ using System.Collections;
 public class PlayerMotor : MonoBehaviour
 {
     /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
-    //public GameObject weaponEffect;
-    // public Mesh[] meshes;
-    //public GameObject mainPlayer;
+    private AudioSource coinSound;
+    public Text scoreText;
+    public GameObject tlePanel;
+    public GameObject left, right;
     public Text timer;
     public GameObject mainCycle;
-    //public WheelCollider front1;
-    // public WheelCollider front2;
-    private WheelCollider back;
-    //public GameObject front;
-    //public GameObject frontToRotatePoint;
     Rigidbody rb;
     public Button hitBUtton;
-    public Light torchLight;
+    public GameObject torchLight;
     public Transform sun;
+    public Text deathText;
     /// //////////////////////////////////////////Game Objects  section end/////////////////////////////////////
 
 
 
     ///////////////////////////////////////Variables section start/////////////////////////////////////////
+    private Color iniColor;
+    private int score;
+    private int gravity;
     private const float RAD_TO_DEG_EUL = 115.6383f;
     private float speed = 110f;
     private float buttonRotation;
-    public float maxTime = 0.5f;
     public float minSwipeDist = 50f;
     private float turningSpeed = 70f;
-    float startTime;
-    float endTime;
-    float swipeDistance;
-    float swipeTime;
     float yAsixRotation;
     private float jumpForce = 100f;
     private float leftright;
     private float forwardback;
-    Vector3 startPose;
-    Vector3 endPose;
     private int startAnimIndex = 0;
     private int endAnimIndex = 500;
-    private float amntTime = 30f;
-    private int multiply = 1;
+    private float amntTime = 20f;
+    private int doorPos = 0;
+    private const string tle = "YOU ARE TIME LIMIT EXCEEDED(TLE)";
+    private const string died = "YOU DIED";
     /// /////////////////////////////////////////////variables section end/////////////////////////////////
 
 
@@ -59,16 +54,36 @@ public class PlayerMotor : MonoBehaviour
 
     void Awake()
     {
+
+        iniColor = timer.color;
+        score = 0;
+        Time.timeScale = 1;
         hitBUtton.interactable = false;
         rb = GetComponent<Rigidbody>();
         //SkinnedMeshRenderer newMesh=mainPlayer.GetComponent<SkinnedMeshRenderer>();
         // newMesh.sharedMesh = meshes[0];
-        torchLight.enabled = false;
+        torchLight.SetActive( false);
+        gravity = PlayerPrefs.GetInt("gravity");
+        tlePanel.SetActive(false);
+        if (gravity == 1)
+        {
+            left.SetActive(false);
+            right.SetActive(false);
+        }
+        else
+        {
+            left.SetActive(true);
+            right.SetActive(true);
+        }
+        coinSound = mainCycle.GetComponent<AudioSource>();
 
     }
 
     void FixedUpdate()
     {
+
+        scoreText.text = score.ToString();
+
         /////////timer setting////////////
 
         if (amntTime > 0)
@@ -77,84 +92,83 @@ public class PlayerMotor : MonoBehaviour
             {
                 timer.color = Color.red;
             }
-            amntTime -= Time.deltaTime;
+            amntTime -= Time.fixedDeltaTime;
             timer.text = amntTime.ToString("F");
         }
-        if (amntTime <= 0 && transform.position.z < 63*multiply)
+        if (amntTime <= 0 && transform.position.z < doorPos)
         {
-            Menus.Restart();
-        }
-        if (transform.position.z > 63 * multiply)
-        {
-            multiply++;
-            amntTime = 30;
-        }
-        Debug.Log("time " + amntTime);
-       // Debug.Log("player pos " + transform.position.z);
 
 
+            death(0);
+        }
+        if (transform.position.z > doorPos)
+        {
+            doorPos += 67;
+            amntTime = 20;
+            timer.color =iniColor;
+            score += 5;
+        }
         ////////////      timer setting end////////////////////
 
 
         rb.AddForce(transform.forward * speed * Time.deltaTime);           //forward movement speed
 
         /////////clamping z and y rotation///////////
-
-        // Debug.Log("Rotation z :" + transform.rotation.z);
-        //Debug.Log("Rotation y :" + transform.rotation.y);
-
-
         if ((RAD_TO_DEG_EUL * transform.rotation.z) >= 30) { transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y * Mathf.Rad2Deg, 31f)); }
         if ((RAD_TO_DEG_EUL * transform.rotation.z) <= -30) { transform.rotation = Quaternion.Euler(0f, transform.rotation.y * RAD_TO_DEG_EUL, -31f); }
         if ((RAD_TO_DEG_EUL * transform.rotation.y) >= 90) { transform.rotation = Quaternion.Euler(0f, 91f, transform.rotation.z * RAD_TO_DEG_EUL); }
         if ((RAD_TO_DEG_EUL * transform.rotation.y) <= -90) { transform.rotation = Quaternion.Euler(0f, -91f, transform.rotation.z * RAD_TO_DEG_EUL); }
 
         mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
+        Debug.Log("maincyclerotation :" + mainCycle.transform.rotation.z);
+        Debug.Log("Button : " + buttonRotation);
         /////////////clampping done z and y rotation////////////////
 
         ////////////////////torchLigt Section/////
-        if (sun.childCount == 2) { torchLight.enabled = true; }
-        else if (sun.childCount == 1) { torchLight.enabled = false; }
-        // Debug.Log("Sun rotation : " + sun.rotation.x);
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (sun.childCount == 2) { torchLight.SetActive(true); }
+        else if (sun.childCount == 1) { torchLight.SetActive(false); }
+
+
+        if (gravity == 1)
         {
-            rb.AddForce(transform.up * speed * 10000);
+
+            if (Input.acceleration.x > 0.19)
+            {
+
+                if (buttonRotation <= 1)
+                {
+                    buttonRotation += .09f;
+                }
+                else
+                {
+
+                    if (buttonRotation >= 0)
+                        buttonRotation -= .09f;
+                }
+                turnRight();
+            }
+            else if (Input.acceleration.x < -.19)
+            {
+
+                if (buttonRotation >= -1)
+                {
+                    buttonRotation -= .09f;
+                }
+
+
+                else
+                {
+                    if (buttonRotation <= 0)
+                        buttonRotation += .09f;
+                }
+                turnLeft();
+            }
+
+
         }
-
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                startTime = Time.time;
-                startPose = touch.position;
-
-            }
-            else if (touch.phase == TouchPhase.Ended)
-            {
-
-                endTime = Time.time;
-                endPose = touch.position;
-            }
-            swipeDistance = (endPose - startPose).magnitude;
-            swipeTime = (endTime - startTime);
-            if (swipeTime < maxTime && swipeDistance > minSwipeDist)
-            {
-                //swipe();
-            }
-        }
-
 
     }
-    void swipe()
-    {
-        Vector2 distance = endPose - startPose;
-        if (distance.y < 0)
-        {
-            rb.AddForce(-transform.forward * speed * 3 * Time.deltaTime);
-        }
 
-    }
     public void turnLeft()
     {
         transform.Rotate(transform.up, turningSpeed * Time.deltaTime * -1);
@@ -165,6 +179,7 @@ public class PlayerMotor : MonoBehaviour
     public void turnRight()
     {
 
+
         transform.Rotate(transform.up, turningSpeed * Time.deltaTime);
         mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
 
@@ -172,28 +187,48 @@ public class PlayerMotor : MonoBehaviour
     }
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log(col.gameObject.name);
-     
+
         if (col.gameObject.tag == "enemy")
         {
-            Menus.Restart();
+            death(1);
         }
     }
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "weapon")
         {
-            //GameObject wf = GameObject.Instantiate(weaponEffect, col.gameObject.transform.position, Quaternion.identity, transform) as GameObject;
             hitBUtton.interactable = true;
-            //here gose the animation index selector randomly and pass it to raygenerator//
-
             int aniIndex = Random.Range(startAnimIndex, endAnimIndex);
-            RayGenerate.setAnimIndex(aniIndex % 4);
-            //Debug.Log("Passed index : " + aniIndex);
-            //Debug.Log(col.gameObject);
+            RayGenerate.setAnimIndex(aniIndex % 3);
             Destroy(col.gameObject);
-           // Destroy(wf, 3.0f);
         }
+        else if (col.gameObject.tag == "coin")
+        {
+            Destroy(col.gameObject);
+            score++;
+            coinSound.Play();
+           
+        }
+    }
+    private void death(int cond)
+    {
+
+        if (cond == 0)
+        {
+            deathText.text = tle;
+            tlePanel.SetActive(true);
+            if (score > PlayerPrefs.GetInt("HighScore"))
+                PlayerPrefs.SetInt("HighScore", score);
+        }
+        else if (cond == 1)
+        {
+            deathText.text = died;
+            tlePanel.SetActive(true);
+            if (score > PlayerPrefs.GetInt("HighScore"))
+                PlayerPrefs.SetInt("HighScore", score);
+
+        }
+        Time.timeScale = 0;
     }
 }
 

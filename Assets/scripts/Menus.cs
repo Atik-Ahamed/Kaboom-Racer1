@@ -13,5 +13,10 @@ public class Menus : MonoBehaviour {
     {
         Restart();
     }
+    public void home()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
 }
 

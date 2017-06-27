@@ -12,7 +12,7 @@ public class rocketScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.AddForce(transform.forward * 1500f * Time.deltaTime);
+        rb.AddForce(transform.forward * 1700f * Time.deltaTime);
 
     }
     void OnTriggerEnter(Collider col)
