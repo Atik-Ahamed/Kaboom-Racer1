@@ -6,7 +6,7 @@ public class EnemyMoveZaxis : MonoBehaviour {
     //public float delayTime = .01f;
 
 	void Start () {
-        iTween.MoveBy(gameObject, iTween.Hash("z", 8, "easeType", "easeInOutExpo", "loopType", "pingPong", "delay", 0, "time",5));
+        iTween.MoveBy(gameObject, iTween.Hash("z", 4, "easeType", "easeInOutExpo", "loopType", "pingPong", "delay", 0, "time",5));
          
     }
 
