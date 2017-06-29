@@ -8,7 +8,7 @@ public class RayGenerate : MonoBehaviour
     public GameObject rocket;
     public GameObject stone;
     private float destroyTime = 1.0f;
-    public GameObject blast;
+   // public GameObject blast;
     private static int animIndex;
     public Button hitButton;
     public GameObject fireRibbon;
@@ -55,13 +55,11 @@ public class RayGenerate : MonoBehaviour
             Destroy(fr, 1.0f);
         }
         hitButton.interactable = false;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 50f))
         {
             if (hit.collider.gameObject.tag == "enemy")
             {
-                GameObject exploison = GameObject.Instantiate(blast, hit.collider.gameObject.transform.position, Quaternion.identity, hit
-                    .collider.gameObject.transform) as GameObject;
-
+              
                 anmtr = hit.collider.gameObject.GetComponentInChildren<Animator>();
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);

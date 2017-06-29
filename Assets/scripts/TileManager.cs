@@ -9,12 +9,13 @@ public class TileManager : MonoBehaviour
     private float spawnZ = 0;
     public Transform playerTransform;
     private float tileLenght = 0f;
-    private int amountTilesOnScreen = 4;
+    private int amountTilesOnScreen = 3;
     public List<GameObject> activeTiles;
     private float yPos = 0;
-
+    private int totalTiles = 0;
     void Start()
     {
+        totalTiles =tilePrefabs.Length;
         for (int i = 0; i < amountTilesOnScreen; i++)
         {
             spawnTile();
@@ -39,7 +40,7 @@ public class TileManager : MonoBehaviour
     public void spawnTile(int prefabIndex = -1)
     {
         GameObject go;
-        int rand =  Random.Range(0, 5); 
+        int rand =  Random.Range(0, totalTiles); 
         go = Instantiate(tilePrefabs[rand]);
         go.transform.SetParent(transform);
         go.transform.position = new Vector3(0,yPos,1*spawnZ);
@@ -49,7 +50,7 @@ public class TileManager : MonoBehaviour
         Transform plane = go.transform.GetChild(0);
         tileLenght = Mathf.Max(plane.GetComponent<MeshRenderer>().bounds.size.z, plane.GetComponent<MeshRenderer>().bounds.size.y, plane.GetComponent<MeshRenderer>().bounds.size.x);
        // plane.GetComponent<MeshRenderer>().bounds.size =( new Vector3(66.9f,0,0));
-        tileLenght -=0.5f;
+        tileLenght -=0.7f;
         //Debug.Log("plane's length is : "+tileLenght+"Spawn Point "+spawnZ);
         spawnZ += tileLenght;
         activeTiles.Add(go);

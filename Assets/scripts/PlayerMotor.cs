@@ -7,6 +7,7 @@ using System.Collections;
 public class PlayerMotor : MonoBehaviour
 {
     /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
+    public GameObject resumeButton;
     private AudioSource coinSound;
     public Text scoreText;
     public GameObject tlePanel;
@@ -41,6 +42,7 @@ public class PlayerMotor : MonoBehaviour
     private int doorPos = 0;
     private const string tle = "YOU ARE TIME LIMIT EXCEEDED(TLE)";
     private const string died = "YOU DIED";
+    private const string paused = "PAUSED";
     /// /////////////////////////////////////////////variables section end/////////////////////////////////
 
 
@@ -76,11 +78,16 @@ public class PlayerMotor : MonoBehaviour
             right.SetActive(true);
         }
         coinSound = mainCycle.GetComponent<AudioSource>();
+        AudioListener.volume = 1.0f;
 
     }
 
     void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            death(2);
+        }
 
         scoreText.text = score.ToString();
 
@@ -212,23 +219,44 @@ public class PlayerMotor : MonoBehaviour
     }
     private void death(int cond)
     {
+        AudioListener.volume = Mathf.Lerp(1, .2f, 4);
 
         if (cond == 0)
         {
+            resumeButton.SetActive(false);
             deathText.text = tle;
             tlePanel.SetActive(true);
             if (score > PlayerPrefs.GetInt("HighScore"))
                 PlayerPrefs.SetInt("HighScore", score);
+            Time.timeScale = 0;
         }
         else if (cond == 1)
         {
+            resumeButton.SetActive(false);
+           
             deathText.text = died;
             tlePanel.SetActive(true);
             if (score > PlayerPrefs.GetInt("HighScore"))
                 PlayerPrefs.SetInt("HighScore", score);
+            Time.timeScale = 0;
 
         }
-        Time.timeScale = 0;
+        else if (cond == 2)
+        {
+           
+            tlePanel.SetActive(true);
+            resumeButton.SetActive(true);
+            deathText.text = paused;
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+            }
+            else if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+            }
+        }
+       
     }
 }
 

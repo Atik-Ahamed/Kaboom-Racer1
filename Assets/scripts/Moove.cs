@@ -8,14 +8,7 @@ public class Moove : MonoBehaviour
     private float leftright;
     private float forwardback; //up down
     public GameObject mainCycle;
-    public GameObject fTire;
-    public GameObject bTire;
-    public GameObject padal;
-    public GameObject padal1;
-    public GameObject padalCenter;
-    public GameObject padalCenter1;
-    public GameObject boole1;
-    public GameObject boole2;
+  
     Rigidbody rb;
     CharacterController cr;
     void Start()
@@ -45,7 +38,7 @@ public class Moove : MonoBehaviour
             // transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, dest, Time.deltaTime);
             while (transform.rotation != Quaternion.identity)
             {
-                mainCycle.transform.Rotate(Vector3.forward, 1f);
+                Quaternion.Lerp(mainCycle.transform.rotation, Quaternion.identity, 1);
 
             }
 

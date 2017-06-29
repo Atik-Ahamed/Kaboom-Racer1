@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menus : MonoBehaviour {
-
+    public GameObject tlePanel;
 	public static void Restart()
     {
         SceneManager.LoadScene(1);
@@ -17,6 +17,12 @@ public class Menus : MonoBehaviour {
     {
         SceneManager.LoadScene(0);
     }
-    
+    public void Resume()
+    {
+        AudioListener.volume = 1.0f;
+        Time.timeScale = 1;
+        tlePanel.SetActive(false);
+
+    }
 }
 
