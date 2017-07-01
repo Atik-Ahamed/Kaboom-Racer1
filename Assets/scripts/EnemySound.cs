@@ -13,7 +13,7 @@ public class EnemySound : MonoBehaviour {
      }
     void Update()
     {
-        if ((Mathf.Abs(player.transform.position.z - transform.position.z) < 10)&&( (Mathf.Abs(player.transform.position.x - transform.position.x)<5)))
+        if ((Mathf.Abs(player.transform.position.z - transform.position.z) <15))
         {
             if (!aud.isPlaying)
             {

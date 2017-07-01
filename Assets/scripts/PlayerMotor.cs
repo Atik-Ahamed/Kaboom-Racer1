@@ -8,7 +8,8 @@ public class PlayerMotor : MonoBehaviour
 {
     /// //////////////////////////////////////////Game Objects  section start/////////////////////////////////////
     public GameObject resumeButton;
-    private AudioSource coinSound;
+    public AudioClip[] clips;//0-coin //1-death
+    private AudioSource audSrc;
     public Text scoreText;
     public GameObject tlePanel;
     public GameObject left, right;
@@ -77,7 +78,7 @@ public class PlayerMotor : MonoBehaviour
             left.SetActive(true);
             right.SetActive(true);
         }
-        coinSound = mainCycle.GetComponent<AudioSource>();
+        audSrc = mainCycle.GetComponent<AudioSource>();
         AudioListener.volume = 1.0f;
 
     }
@@ -127,8 +128,8 @@ public class PlayerMotor : MonoBehaviour
         if ((RAD_TO_DEG_EUL * transform.rotation.y) <= -90) { transform.rotation = Quaternion.Euler(0f, -91f, transform.rotation.z * RAD_TO_DEG_EUL); }
 
         mainCycle.transform.rotation = Quaternion.Euler(0f, transform.rotation.y * 180, -30 * buttonRotation);
-        Debug.Log("maincyclerotation :" + mainCycle.transform.rotation.z);
-        Debug.Log("Button : " + buttonRotation);
+        //Debug.Log("maincyclerotation :" + mainCycle.transform.rotation.z);
+       // Debug.Log("Button : " + buttonRotation);
         /////////////clampping done z and y rotation////////////////
 
         ////////////////////torchLigt Section/////
@@ -213,22 +214,26 @@ public class PlayerMotor : MonoBehaviour
         {
             Destroy(col.gameObject);
             score++;
-            coinSound.Play();
-           
+            audSrc.clip = clips[0];
+            audSrc.Play();
+
         }
     }
     private void death(int cond)
     {
-        AudioListener.volume = Mathf.Lerp(1, .2f, 4);
+        AudioListener.volume = Mathf.Lerp(1, .2f, 7);
 
         if (cond == 0)
         {
+            
             resumeButton.SetActive(false);
             deathText.text = tle;
             tlePanel.SetActive(true);
             if (score > PlayerPrefs.GetInt("HighScore"))
                 PlayerPrefs.SetInt("HighScore", score);
             Time.timeScale = 0;
+            audSrc.clip = clips[1];
+            audSrc.Play();
         }
         else if (cond == 1)
         {
@@ -239,6 +244,8 @@ public class PlayerMotor : MonoBehaviour
             if (score > PlayerPrefs.GetInt("HighScore"))
                 PlayerPrefs.SetInt("HighScore", score);
             Time.timeScale = 0;
+            audSrc.clip = clips[1];
+            audSrc.Play();
 
         }
         else if (cond == 2)

@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         aboutPanel.SetActive(false);
         pr.SetActive(true);
         loadingPanel.SetActive(false);
