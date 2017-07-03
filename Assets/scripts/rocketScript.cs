@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class rocketScript : MonoBehaviour
 {
+    
     Animator anmtr;
     Rigidbody rb;
     void Start()
@@ -19,6 +20,7 @@ public class rocketScript : MonoBehaviour
     {
         if (col.gameObject.tag == "enemy")
         {
+            PlayerMotor.IncScore(5);
             anmtr = col.gameObject.GetComponentInChildren<Animator>();
             anmtr.SetBool("fired", true);
             //Debug.Log(hit.collider.gameObject);

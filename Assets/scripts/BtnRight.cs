@@ -10,19 +10,19 @@ public class BtnRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject player;
 
-
+                                  
 
     bool btnRightPressed = false;
-    bool btnLeftPressed = false;
-   
+    //bool btnLeftPressed = false;
+
     public void OnPointerUp(PointerEventData eventData)
     {
-       // Debug.Log("The mouse click was released");
+        // Debug.Log("The mouse click was released");
         btnRightPressed = false;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-       // Debug.Log("rightPressed");
+        // Debug.Log("rightPressed");
         btnRightPressed = true;
     }
 

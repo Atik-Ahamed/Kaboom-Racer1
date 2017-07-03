@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RayGenerate : MonoBehaviour
 {
+   
     public GameObject rocket;
     public GameObject stone;
     private float destroyTime = 1.0f;
@@ -12,10 +13,10 @@ public class RayGenerate : MonoBehaviour
     private static int animIndex;
     public Button hitButton;
     public GameObject fireRibbon;
-    AudioSource shotGunSound;
+    
     Animator anmtr;
     public Animator playerAnimator;
-    int fired_anim_Hash;
+   
     RaycastHit hit;
     public static void setAnimIndex(int index) { animIndex = index; }
     public void hitAnim()
@@ -59,7 +60,7 @@ public class RayGenerate : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "enemy")
             {
-              
+                PlayerMotor.IncScore(5);
                 anmtr = hit.collider.gameObject.GetComponentInChildren<Animator>();
                 anmtr.SetBool("fired", true);
                 //Debug.Log(hit.collider.gameObject);

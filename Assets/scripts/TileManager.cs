@@ -51,7 +51,7 @@ public class TileManager : MonoBehaviour
         tileLenght = Mathf.Max(plane.GetComponent<MeshRenderer>().bounds.size.z, plane.GetComponent<MeshRenderer>().bounds.size.y, plane.GetComponent<MeshRenderer>().bounds.size.x);
        // plane.GetComponent<MeshRenderer>().bounds.size =( new Vector3(66.9f,0,0));
         tileLenght -=0.7f;
-        Debug.Log("plane's length is : "+tileLenght+"Spawn Point "+spawnZ);
+       // Debug.Log("plane's length is : "+tileLenght+"Spawn Point "+spawnZ);
         spawnZ += tileLenght;
         activeTiles.Add(go);
     }

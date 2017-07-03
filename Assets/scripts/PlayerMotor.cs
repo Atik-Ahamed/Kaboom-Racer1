@@ -26,7 +26,7 @@ public class PlayerMotor : MonoBehaviour
 
     ///////////////////////////////////////Variables section start/////////////////////////////////////////
     private Color iniColor;
-    private int score;
+    private static int score;
     private int gravity;
     private const float RAD_TO_DEG_EUL = 115.6383f;
     private float speed = 110f;
@@ -34,7 +34,7 @@ public class PlayerMotor : MonoBehaviour
     public float minSwipeDist = 50f;
     private float turningSpeed = 70f;
     float yAsixRotation;
-    private float jumpForce = 100f;
+   // private float jumpForce = 100f;
     private float leftright;
     private float forwardback;
     private int startAnimIndex = 0;
@@ -51,6 +51,8 @@ public class PlayerMotor : MonoBehaviour
     //////////////getters and setters start///////////////////////////////////////////
     public void setBUttonRotation(float value) { buttonRotation += value; }
     public float getButtonRotaion() { return buttonRotation; }
+    public static void IncScore(int x) { score += x; }
+    public static int getScore() { return score; }
     //////////////getters and setters end///////////////////////////////////////////
 
 
@@ -114,7 +116,6 @@ public class PlayerMotor : MonoBehaviour
             doorPos += 67;
             amntTime = 20;
             timer.color =iniColor;
-            score += 5;
         }
         ////////////      timer setting end////////////////////
 
@@ -231,9 +232,13 @@ public class PlayerMotor : MonoBehaviour
             tlePanel.SetActive(true);
             if (score > PlayerPrefs.GetInt("HighScore"))
                 PlayerPrefs.SetInt("HighScore", score);
+
             Time.timeScale = 0;
             audSrc.clip = clips[1];
             audSrc.Play();
+           int curr= PlayerPrefs.GetInt("coin");
+            curr += score;
+            PlayerPrefs.SetInt("coin", curr);
         }
         else if (cond == 1)
         {
@@ -246,6 +251,9 @@ public class PlayerMotor : MonoBehaviour
             Time.timeScale = 0;
             audSrc.clip = clips[1];
             audSrc.Play();
+            int curr = PlayerPrefs.GetInt("coin");
+            curr += score;
+            PlayerPrefs.SetInt("coin", curr);
 
         }
         else if (cond == 2)

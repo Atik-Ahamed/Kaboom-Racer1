@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject gravityPanel;
     public CanvasGroup maincnvsGroup;
     public Text highScore;
+    public Text coin;
     public GameObject loadingPanel;
     public GameObject pr;
 
@@ -26,6 +27,7 @@ public class MainMenu : MonoBehaviour
         tgl.transition = Selectable.Transition.Animation;
         PlayerPrefs.SetInt("gravity", 0);
         highScore.text = "BEST : "+PlayerPrefs.GetInt("HighScore").ToString();
+        coin.text = "COIN : " + PlayerPrefs.GetInt("coin").ToString();
      
     }
 
