@@ -75,17 +75,25 @@ public class MainMenu : MonoBehaviour
     }
     public void quitGame()
     {
+        Adver.showAdvertiseMent();
         Application.Quit();
+       
     }
 
     public void about()
     {
         aboutPanel.SetActive(true);
+        Adver.showAdvertiseMent();
 
     }
     public void quitAbout()
     {
         aboutPanel.SetActive(false);
+        Adver.showAdvertiseMent();
     }
-  
+    public  void ShowLeaderboardsUI()
+    {
+        PlayGamesScript.ShowLeaderboardsUI();
+    }
+
 }

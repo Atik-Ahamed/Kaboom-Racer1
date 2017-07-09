@@ -92,6 +92,11 @@ public class PlayerMotor : MonoBehaviour
             death(2);
         }
 
+        if (transform.position.z < -500)
+        {
+            death(1);
+        }
+
         scoreText.text = score.ToString();
 
         /////////timer setting////////////
@@ -239,6 +244,8 @@ public class PlayerMotor : MonoBehaviour
            int curr= PlayerPrefs.GetInt("coin");
             curr += score;
             PlayerPrefs.SetInt("coin", curr);
+            PlayGamesScript.AddScoreToLeaderboard(GPGSIds.leaderboard_kaboom_racer, score);
+
         }
         else if (cond == 1)
         {
@@ -254,7 +261,7 @@ public class PlayerMotor : MonoBehaviour
             int curr = PlayerPrefs.GetInt("coin");
             curr += score;
             PlayerPrefs.SetInt("coin", curr);
-
+            PlayGamesScript.AddScoreToLeaderboard(GPGSIds.leaderboard_kaboom_racer, score);
         }
         else if (cond == 2)
         {

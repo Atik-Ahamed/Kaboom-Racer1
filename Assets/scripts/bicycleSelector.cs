@@ -10,7 +10,7 @@ public class bicycleSelector : MonoBehaviour {
     private void Start()
     {
         int coin = PlayerPrefs.GetInt("coin");
-        isPossible = coin >=100 ? true : false;
+        isPossible = coin >=500 ? true : false;
         lck.SetActive(false);
         index = PlayerPrefs.GetInt("bicycleIndex");
         characterList = new GameObject[transform.childCount];
