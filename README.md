@@ -9,19 +9,11 @@ Kaboom Racer is an endless bicycle racing game.
 - Unlock the doors with in limited time.
 
 
-# Resources and language used
-
-  - Unity3D
-  - Blender
-  - C#
- 
-I developed this game during my 3rd semester project.
-
 ### Tech
 
 * [Unity3D](https://unity.com)
 * [Blender](https://www.blender.org)
 * C#
-
+I developed this game during my 3rd semester project.
 ### Development
 Any kind of contribution is appreciable.
